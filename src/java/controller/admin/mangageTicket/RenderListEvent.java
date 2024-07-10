@@ -46,22 +46,36 @@ public class RenderListEvent extends HttpServlet {
 
         // check permission go here
         ServletContext context = getServletContext();
-        List<String> permisson = (List<String>) context.getAttribute("permission");
-        if (!permisson.contains("view_ticket")) {
+        List<String> permissions = (List<String>) context.getAttribute("permission");
+        if (!permissions.contains("view_ticket")) {
             res.sendRedirect("http://localhost:8080/views/client/404Page/404Page.html");
             return;
         }
-        //end
 
-        // get all data from db ticket
+        // Lấy danh sách sự kiện từ database
         queryEvent qEvent = queryEvent.createInstance();
         ServletContext servletContext = getServletContext();
         String token = (String) servletContext.getAttribute("token");
         queryUser qUser = queryUser.createQueryUSer();
         List<Event> listEvent = qEvent.getEventByCreator(qUser.getIdByToken(token));
-        req.setAttribute("event", listEvent);
-        //end
-//         / views / admin / pages / event / dashboard.js
+
+        // Phân trang
+        int pageSize = 4; // Số sự kiện trên mỗi trang
+        int totalEvents = listEvent.size();
+        int totalPages = (int) Math.ceil((double) totalEvents / pageSize);
+        int currentPage = (req.getParameter("page") != null) ? Integer.parseInt(req.getParameter("page")) : 1;
+        int startIndex = (currentPage - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, totalEvents);
+
+        // Lấy danh sách sự kiện trang hiện tại
+        List<Event> currentPageEvents = listEvent.subList(startIndex, endIndex);
+
+        // Đặt các thuộc tính vào request để truyền tới JSP
+        req.setAttribute("event", currentPageEvents);
+        req.setAttribute("currentPage", currentPage);
+        req.setAttribute("totalPages", totalPages);
+
+        // Chuyển tiếp request tới JSP để hiển thị
         req.getRequestDispatcher("/views/admin/pages/event/dashboard.jsp").forward(req, res);
     }
 

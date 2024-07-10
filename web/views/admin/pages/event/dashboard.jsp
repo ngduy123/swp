@@ -10,6 +10,44 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
+    <style>
+    .pagination {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .pagination a {
+        display: inline-block;
+        margin: 0 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: white; /* Màu chữ cho các nút */
+        border: 1px solid #007bff; /* Viền của các nút */
+        border-radius: 3px; /* Đường cong của các nút */
+    }
+
+    .pagination a.current {
+        background-color: #007bff; /* Màu nền của nút hiện tại */
+        color: #fff; /* Màu chữ của nút hiện tại */
+    }
+
+    .pagination a:hover {
+        background-color: #0056b3; /* Màu nền khi di chuột qua các nút */
+        border-color: #0056b3; /* Màu viền khi di chuột qua các nút */
+    }
+
+    .pagination .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    /* Để căn giữa các nút phân trang */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../../../../public/admin/css/DashboarCss.css"/>
@@ -96,10 +134,6 @@
                     </header>
                     <!-- Main -->
 
-
-
-
-
                     <main class="py-6 bg-surface-secondary">
                         <div class="container-fluid">
                             <!-- Card stats -->
@@ -111,9 +145,7 @@
                                 <div class="table-responsive">
                                     <!---table event-->
                                     <div class="products" ng-app="app" ng-controller="AppCtrl">
-
                                         <md-content layout-padding>
-
 
                                             <div class="table-responsive">
                                                 <table class="table table-hover table-nowrap">
@@ -172,8 +204,6 @@
                                                                                 </c:if>
                                                                             </td>
 
-
-
                                                                         </tr>
                                                                         <tr>
                                                                             <td> <c:if test="${fn:contains(permission, 'edit_ticket')}">
@@ -193,40 +223,55 @@
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
-
-
-
                                                     </tbody>
                                                 </table>
+                                                <div class="pagination">
+                                                    <c:if test="${currentPage > 1}">
+                                                        <a href="?page=${currentPage - 1}" class="btn btn-sm btn-primary">previous</a>
+                                                    </c:if>
+
+                                                    <c:forEach var="pageNum" begin="1" end="${totalPages}">
+                                                        <c:choose>
+                                                            <c:when test="${pageNum == currentPage}">
+                                                                <a href="?page=${pageNum}" class="btn btn-sm btn-secondary">${pageNum}</a>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a href="?page=${pageNum}" class="btn btn-sm btn-primary">${pageNum}</a>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+
+                                                    <c:if test="${currentPage < totalPages}">
+                                                        <a href="?page=${currentPage + 1}" class="btn btn-sm btn-primary">next</a>
+                                                    </c:if>
+                                                </div>
                                             </div>
-                                        </md-content>
                                     </div>
-
+                                    </md-content>
                                 </div>
 
+                            </div>
+                            <div class="card-footer border-0 py-5">
+                                <span class="text-muted text-sm">1000 trong 1000</span>
 
-
-                                <div class="card-footer border-0 py-5">
-                                    <span class="text-muted text-sm">1000 trong 1000</span>
-
-                                </div>
                             </div>
                         </div>
-                    </main>
                 </div>
-            </div>
-        </c:if>
+            </main>
+        </div>
+    </div>
+</c:if>
 
 
 
-    </body>
+</body>
 
 
 
 
-    <script src="../../../../public/admin/js/dashboard.js"></script>
-    <script src="../../../../public/admin/js/dashboardEvent.js"></script>
-    <script src="../../../../public/admin/js/alert.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="../../../../public/admin/js/dashboard.js"></script>
+<script src="../../../../public/admin/js/dashboardEvent.js"></script>
+<script src="../../../../public/admin/js/alert.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </html>

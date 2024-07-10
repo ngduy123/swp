@@ -178,12 +178,17 @@
                         </c:choose>
                     </div>
                     <div class="pagination">
-                        <a href="blog?page=${currentPage - 1}" class="${currentPage == 1 ? 'disabled' : ''}">Previous</a>
+                        <c:if test="${currentPage > 1}">
+                            <a href="blog?page=${currentPage - 1}">Previous</a>
+                        </c:if>
                         <c:forEach var="i" begin="1" end="${totalPages}">
                             <a href="blog?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
                         </c:forEach>
-                        <a href="blog?page=${currentPage + 1}" class="${currentPage == totalPages ? 'disabled' : ''}">Next</a>
+                        <c:if test="${currentPage < totalPages}">
+                            <a href="blog?page=${currentPage + 1}">Next</a>
+                        </c:if>
                     </div>
+
                 </div>
             </div>
         </div>

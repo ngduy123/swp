@@ -19,14 +19,7 @@
     </head>
     <body>
 
-
-
-
-
-
-
         <c:set var="account" scope="page" value="${requestScope.account}"/>  
-
 
         <c:if test="${sessionScope.error != null}">
             <div class="message info">
@@ -34,22 +27,13 @@
             </div>
             ${sessionScope.remove("error")}
         </c:if>
-
-
-
         <c:if test="${sessionScope.success != null}">
             <div class="message info">
                 <div class="alert alert-success" show-alert data-time="3000"> ${sessionScope.success}  <span close-alert>x</span> </div>
             </div>
             ${sessionScope.remove("success")}
         </c:if>
-
-
-
         <c:set var="permission" value="${applicationScope.permission}"  />
-
-
-
 
         <!-- Banner -->
 
@@ -92,11 +76,6 @@
                         </div>
                     </header>
                     <!-- Main -->
-
-
-
-
-
                     <main class="py-6 bg-surface-secondary">
                         <div class="container-fluid">
                             <!-- Card stats -->
@@ -154,7 +133,6 @@
                                                                         <i class=${item.status == "active" ? "bg-success" : "bg-danger"}></i><a  id="${item.id}" status="${item.status}" style="color: black" >  ${item.status == "active" ? "Hoạt động" : "Tạm khóa"}</a>
                                                                     </span>
                                                                 </c:if>
-
                                                             </td>
                                                             <td class="text-end">
                                                                 <c:if test="${fn:contains(permission, 'edit_account')}">
@@ -172,9 +150,6 @@
                                                                         <i class="bi bi-trash" delete-btn id=${item.id}> </i>
                                                                     </button>
                                                                 </c:if>
-
-
-
                                                             </td>
                                                         </tr>
                                                     </c:if>
@@ -188,11 +163,6 @@
                                                     <td> <b>Không có tài khoản nào có sẵn</b></td>
                                                 </tr>
                                             </c:if>
-
-
-
-
-
                                         </tbody>
 
                                     </table>
@@ -269,15 +239,12 @@
                                                                     </button>
                                                                 </c:if>
 
-
-
-
                                                             </td>
                                                         </tr>
                                                     </c:if>
 
                                                 </c:forEach>  
-
+                                                        
                                             </c:if>
 
                                             <c:if test="${fn:length(account) == 0 }">    
@@ -286,37 +253,28 @@
                                                 </tr>
                                             </c:if>
 
-
-
-
-
                                         </tbody>
 
                                     </table>
-
+                                    
                                 </div>
 
                                 <div class="card-footer border-0 py-5">
                                     <span class="text-muted text-sm">${fn:length(account)} trong ${fn:length(account)}</span>
 
                                 </div>
+                                 
                             </div>
                         </div>
+                                    
                     </main>
                 </div>
             </c:if>
-
             <c:if test="${!fn:contains(permission, 'view_account')}">
                 <h1>Bạn không có quyền tại đây</h1>
             </c:if>
-
-
         </div>
-
     </body>
-
-
-
 
     <script src="../../../../public/admin/js/dashboard.js"></script>
     <script src="../../../../public/admin/js/changeStatus.js"></script>

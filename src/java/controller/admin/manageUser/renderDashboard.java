@@ -45,13 +45,13 @@ public class renderDashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-
+        
         // get all account
         queryUser queryUs = queryUser.createQueryUSer();
         List<account> account = queryUs.getAll();
         req.setAttribute("account", account);
         //end
-
+        
     
         req.getRequestDispatcher("/views/admin/pages/account/DashBoard.jsp").forward(req, res);
 

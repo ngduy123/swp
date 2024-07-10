@@ -315,9 +315,6 @@ https://www.tooplate.com/view/2125-artxibition
                 list-style: none;
                 font-size: 19px;
             }
-
-
-
         </style>
     </head>
 

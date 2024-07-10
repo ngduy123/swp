@@ -175,16 +175,9 @@
 
         function getDateValue(element) {
             // Lấy giá trị ngày tháng từ các phần tử trong phần tử project-item
-            const dateString = element.querySelector('.progress-row h6:nth-of-type(4)').textContent.trim();
-            
-            // Xử lý chuyển đổi chuỗi ngày tháng về đối tượng Date để có thể so sánh
-            const dateParts = dateString.split('/');
-            const day = parseInt(dateParts[0]);
-            const month = parseInt(dateParts[1]) - 1; // Tháng trong đối tượng Date bắt đầu từ 0 (0 -> Tháng 1)
-            const year = parseInt(dateParts[2]);
-
-            const eventDate = new Date(year, month, day);
-            return eventDate.getTime(); // Trả về giá trị số mili giây của ngày tháng
+            const dateString = element.querySelector('.footer-row .alert-dark, .footer-row .alert-success').textContent;
+            const days = dateString.match(/-?\d+/)[0];
+            return parseInt(days);
         }
     </script>
 </body>

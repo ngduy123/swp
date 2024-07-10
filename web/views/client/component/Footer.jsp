@@ -1,19 +1,39 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-  .social-links .fa-twitter {
-    color: #1DA1F2 !important;
-}
-.social-links .fa-facebook {
-    color: #3b5998 !important;
-}
-.social-links .fa-behance {
-    color: #1769ff !important;
-}
-.social-links .fa-instagram {
-    color: #C13584 !important;
-}
+  /* CSS cho footer */
+  footer {
+    background-color: #ffffff; /* Màu nền footer là trắng */
+    color: #000000; /* Màu chữ là đen */
+    /* Các thuộc tính CSS khác cho footer */
+  }
 
+  .social-links .fa-twitter {
+    color: #1DA1F2;
+  }
+
+  .social-links .fa-facebook {
+    color: #3b5998;
+  }
+
+  .social-links .fa-behance {
+    color: #1769ff;
+  }
+
+  .social-links .fa-instagram {
+    color: #C13584;
+  }
+
+  /* Thay đổi màu chữ cho các phần tử khác trong footer */
+  .address h4,
+  .links h4,
+  .hours h4,
+  .under-footer h4,
+  .sub-footer h4,
+  .under-footer p,
+  .sub-footer .logo span {
+    color: #000000; /* Màu chữ là đen */
+  }
 </style>
 <footer>
     <div class="container">
